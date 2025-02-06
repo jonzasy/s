@@ -10,7 +10,8 @@ jobs:
 
       - name: Download File
         run: |
-          curl -L https://huggingface.co/MaziyarPanahi/Mistral-7B-Instruct-v0.3-GGUF/resolve/main/Mistral-7B-Instruct-v0.3.IQ1_S.gguf -o "destination/path/filename.ext"
+          mkdir -p download
+          curl -L "https://huggingface.co/MaziyarPanahi/Mistral-7B-Instruct-v0.3-GGUF/resolve/main/Mistral-7B-Instruct-v0.3.IQ1_S.gguf" -o "download/h.gguf"
 
       - name: Commit and Push
         run: |
