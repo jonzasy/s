@@ -1,0 +1,24 @@
+name: Download Mistral Model342
+
+on: [push]  # يشتغل عند أي تحديث بالمستودع
+
+jobs:
+  download_and_commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # يسحب المستودع لتحديث الملفات
+
+      - name: Download File
+        run: |
+          mkdir -p models  # إنشاء مجلد "models" لو مش موجود
+          curl -L "https://huggingface.co/MaziyarPanahi/Mistral-7B-Instruct-v0.3-GGUF/resolve/main/Mistral-7B-Instruct-v0.3.IQ1_S.gguf" -o "models/Mistral-7B-Instruct-v0.3.IQ1_S.gguf"
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add models/Mistral-7B-Instruct-v0.3.IQ1_S.gguf
+          git commit -m "Added Mistral-7B model"
+          git push
